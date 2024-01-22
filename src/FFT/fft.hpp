@@ -28,5 +28,5 @@ template <class T> class FFT {
                     std::vector<std::complex<float>> &out, std::size_t n);
 };
 
-template class FFT<std::uint8_t>;
+template class FFT<short>;
 template class FFT<std::uint16_t>;
