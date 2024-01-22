@@ -1,8 +1,8 @@
 %define _lto_cflags %{nil}
 
 Name:           MusicSpectrum
-Version:        0.0.3
-Release:        2%{?dist}.nolto
+Version:        0.0.4
+Release:        3%{?dist}.nolto
 Summary:        Audio spectrum viewer.
 
 License:        CC0-1.0
@@ -48,5 +48,5 @@ make -j4
 
 
 %changelog
-* Mon Jan 22 2024 Geraldo Simião <geraldosimiao@fedoraproject.org> - 0.0.3-2
+* Mon Jan 22 2024 Geraldo Simião <geraldosimiao@fedoraproject.org> - 0.0.4-3
 - Initial package for fedora - no LTO
