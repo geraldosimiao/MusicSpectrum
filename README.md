@@ -104,4 +104,4 @@ Para usar coloque um audio na pasta assets e execute como no exemplo abaixo:
 Video do Tsoding Daily: [Music Visualizer (Fast Fourier Transform)](https://youtu.be/Xdbk1Pr5WXU)
 
 ## Licença
-Este projeto usa a licença [Creative Commons Zero v1.0 Universal]([https://en.wikipedia.org/wiki/MIT_License](https://spdx.org/licenses/CC0-1.0.html)https://spdx.org/licenses/CC0-1.0.html).
+Este projeto usa a licença [Creative Commons Zero v1.0 Universal](https://en.wikipedia.org/wiki/MIT_License](https://spdx.org/licenses/CC0-1.0.html)https://spdx.org/licenses/CC0-1.0.html).
