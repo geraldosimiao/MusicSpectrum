@@ -39,7 +39,7 @@ foreach(SOURCE_FILE ${EXTERNAL_SOURCES})
 endforeach()
 
 # Create a library from the external sources and headers
-add_library(external_lib 
+add_library(external_lib STATIC
   ${EXTERNAL_HEADERS}
   ${EXTERNAL_SOURCES}
 )
