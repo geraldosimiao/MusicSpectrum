@@ -45,12 +45,9 @@ Precisa do cmake, gcc, g++, make e a lib do SFML. Após instalar é só seguir o
 
 ```
 git clone https://github.com/lucasfturos/MusicSpectrum.git && cd MusicSpectrum
-mkdir assets
 mkdir build
 cd build
 ```
-Coloque as músicas antes de executar os próximos comandos.
-
 Após baixar, entrar na pasta, criar e entrar a pasta build, é só compilar:
 ```
 cmake .. && make -j4
