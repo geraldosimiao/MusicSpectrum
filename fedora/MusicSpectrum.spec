@@ -1,13 +1,14 @@
 %define _lto_cflags %{nil}
 
 Name:           MusicSpectrum
-Version:        0.0.4
-Release:        3%{?dist}.nolto
+Version:        0.0.5
+Release:        8%{?dist}.nolto
 Summary:        Audio spectrum viewer.
 
 License:        CC0-1.0
-URL:            https://github.com/lucasfturos/MusicSpectrum.git
-Source0:        https://github.com/geraldosimiao/MusicSpectrum/archive/refs/tags/%{version}.tar.gz
+URL:            https://github.com/geraldosimiao/MusicSpectrum.git
+Source0:        https://github.com/geraldosimiao/MusicSpectrum/archive/refs/tags/%{name}-%{version}.tar.gz
+Patch:          ASSETS.patch
 
 BuildRequires:  make
 BuildRequires:  cmake
@@ -30,23 +31,30 @@ Audio spectrum viewer. Application of the Fourier transform FFT in conjunction w
       -Developed in C++ and SFML.
 
 %prep
-%autosetup 
+%autosetup -p1
 
 %build
-mkdir build
-cd build
-cmake ..
-make -j4
+%cmake -DCMAKE_CXX_FLAGS="%{optflags} \
+    -DMS_ASSETS_DIR='\"%{_datadir}/%{name}/assets\"'"
+%cmake_build
 
 %install
-%cmake_install
+install -D -p -m755 \
+    %{_builddir}/%{name}-%{version}/%{__cmake_builddir}/src/%{name} \
+    %{buildroot}/%{_bindir}/%{name}
+install -D -p -m644 LICENSES/CC0-1.0.txt \
+    %{buildroot}/%{_datadir}/licenses/%{name}/CC0-1.0.txt
+install -D -p -m644 README.md %{buildroot}/%{_docdir}/%{name}/README.md
+mkdir -p %{buildroot}/%{_datadir}/%{name}
+cp -a assets %{buildroot}/%{_datadir}/%{name}/
 
-%files -f %{name}.lang
-%license LICENSES
+%files
+%license CC0-1.0.txt
 %doc README.md
 %{_bindir}/%{name}
+%{_datadir}/%{name}
 
 
 %changelog
-* Mon Jan 22 2024 Geraldo Simião <geraldosimiao@fedoraproject.org> - 0.0.4-3
+* Tue Jan 23 2024 Geraldo Simião <geraldosimiao@fedoraproject.org> - 0.0.5-8
 - Initial package for fedora - no LTO
