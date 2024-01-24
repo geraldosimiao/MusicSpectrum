@@ -7,7 +7,7 @@ Summary:        Audio spectrum viewer.
 
 License:        CC0-1.0
 URL:            https://github.com/geraldosimiao/MusicSpectrum.git
-Source0:        https://github.com/geraldosimiao/MusicSpectrum/archive/refs/tags/%{name}-%{version}.tar.gz
+Source0:        https://github.com/geraldosimiao/MusicSpectrum/archive/refs/tags/%{version}.tar.gz
 Patch:          ASSETS.patch
 
 BuildRequires:  make
