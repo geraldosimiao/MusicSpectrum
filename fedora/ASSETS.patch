@@ -1,0 +1,76 @@
+diff --git a/external/imgui/imgui_draw.cpp b/external/imgui/imgui_draw.cpp
+index 0823b01..a3b0b70 100644
+--- a/external/imgui/imgui_draw.cpp
++++ b/external/imgui/imgui_draw.cpp
+@@ -2149,6 +2149,7 @@ ImFont* ImFontAtlas::AddFontFromFileTTF(const char* filename, float size_pixels,
+     void* data = ImFileLoadToMemory(filename, "rb", &data_size, 0);
+     if (!data)
+     {
++        fprintf(stderr, "OOPS - COULD NOT LOAD FONT FILE: %s\n", filename);
+         IM_ASSERT_USER_ERROR(0, "Could not load font file!");
+         return NULL;
+     }
+diff --git a/src/HUD/hud.cpp b/src/HUD/hud.cpp
+index 6c3349e..7133879 100644
+--- a/src/HUD/hud.cpp
++++ b/src/HUD/hud.cpp
+@@ -1,5 +1,9 @@
+ #include "hud.hpp"
+ 
++#ifndef MS_ASSETS_DIR
++#error Please define MS_ASSETS_DIR as the place to store the assets directory
++#endif
++
+ HUD::HUD(std::shared_ptr<sf::RenderWindow> win) : window(win) {
+     if (!ImGui::SFML::Init(*window, false)) {
+         throw std::runtime_error("Error when Initializing RenderWindow!");
+@@ -17,7 +21,7 @@ HUD::~HUD() { ImGui::SFML::Shutdown(); }
+ 
+ void HUD::initFont() {
+     ImGui::GetIO().Fonts->Clear();
+-    ImGui::GetIO().Fonts->AddFontFromFileTTF("./assets/font/Roboto-Regular.ttf",
++    ImGui::GetIO().Fonts->AddFontFromFileTTF(MS_ASSETS_DIR "/font/Roboto-Regular.ttf",
+                                              18.f);
+     if (!ImGui::SFML::UpdateFontTexture()) {
+         throw std::runtime_error("Update Font Texture");
+@@ -25,31 +29,31 @@ void HUD::initFont() {
+ }
+ 
+ void HUD::initTexture() {
+-    if (!play_tex.loadFromFile("./assets/img/icon/botao-play.png")) {
++    if (!play_tex.loadFromFile(MS_ASSETS_DIR "/img/icon/botao-play.png")) {
+         throw std::invalid_argument("Error Loading Texture Play");
+     }
+-    if (!pause_tex.loadFromFile("./assets/img/icon/pausa.png")) {
++    if (!pause_tex.loadFromFile(MS_ASSETS_DIR "/img/icon/pausa.png")) {
+         throw std::invalid_argument("Error Loading Texture Pause");
+     }
+-    if (!stop_tex.loadFromFile("./assets/img/icon/pare.png")) {
++    if (!stop_tex.loadFromFile(MS_ASSETS_DIR "/img/icon/pare.png")) {
+         throw std::invalid_argument("Error Loading Texture Stop");
+     }
+-    if (!forward_tex.loadFromFile("./assets/img/icon/avanco-rapido.png")) {
++    if (!forward_tex.loadFromFile(MS_ASSETS_DIR "/img/icon/avanco-rapido.png")) {
+         throw std::invalid_argument("Error Loading Texture Forward");
+     }
+-    if (!backward_tex.loadFromFile("./assets/img/icon/retroceder.png")) {
++    if (!backward_tex.loadFromFile(MS_ASSETS_DIR "/img/icon/retroceder.png")) {
+         throw std::invalid_argument("Error Loading Texture Backward");
+     }
+-    if (!previous_tex.loadFromFile("./assets/img/icon/costas.png")) {
++    if (!previous_tex.loadFromFile(MS_ASSETS_DIR "/img/icon/costas.png")) {
+         throw std::invalid_argument("Error Loading Texture Previous");
+     }
+-    if (!next_tex.loadFromFile("./assets/img/icon/proximo.png")) {
++    if (!next_tex.loadFromFile(MS_ASSETS_DIR "/img/icon/proximo.png")) {
+         throw std::invalid_argument("Error Loading Texture Next");
+     }
+-    if (!mute_tex.loadFromFile("./assets/img/icon/mudo.png")) {
++    if (!mute_tex.loadFromFile(MS_ASSETS_DIR "/img/icon/mudo.png")) {
+         throw std::invalid_argument("Error Loading Texture Mute");
+     }
+-    if (!volume_tex.loadFromFile("./assets/img/icon/volume.png")) {
++    if (!volume_tex.loadFromFile(MS_ASSETS_DIR "/img/icon/volume.png")) {
+         throw std::invalid_argument("Error Loading Texture Volume");
+     }
+ }
